@@ -52,10 +52,24 @@ t1-chooser {
   height: 20vmin;
 }
 
+t1-choose.fixed {
+  height: auto;
+}
+
 t1-chooser.chosen > *.chosen {
   max-width: 30%;
+}
+
+t1-chooser.fixed > *.chosen {
+  max-width: 40%;
+  animation-name: chosen_fixed;
+  animation-duration: 0.5s;
+}
+
+t1-chooser.chosen.animate > *.chosen {
   animation-name: chosen;
   animation-duration: 1s;
+  animation-timing-function: ease;
 }
 
 @keyframes chosen {
@@ -67,11 +81,31 @@ t1-chooser.chosen > *.chosen {
   }
 }
 
+@keyframes chosen_fixed {
+  from {
+    max-width: 30%;
+  }
+  to {
+    max-width: 40%;
+  }
+}
+
 t1-chooser.chosen > *:not(.chosen) {
   max-width: 16.6%;
+  opacity: 0.25;
+}
+
+t1-chooser.fixed > *:not(.chosen) {
+  max-width: 0%;
+  opacity: 0.25;
+  animation-duration: 0.5s;
+  animation-name: unchosen_fixed;
+}
+
+t1-chooser.chosen.animate > *:not(.chosen) {
   animation-name: unchosen;
   animation-duration: 1s;
-  opacity: 0.25;
+  animation-timing-function: linear;
 }
 
 @keyframes unchosen {
@@ -82,6 +116,15 @@ t1-chooser.chosen > *:not(.chosen) {
   to {
     max-width: 16.6%;
     opacity: 0.25;
+  }
+}
+
+@keyframes unchosen_fixed {
+  from {
+    max-width: 16.6%;
+  }
+  to {
+    max-width: 0%;
   }
 }
 
